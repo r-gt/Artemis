@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 // las funciones reciben un string de entrada.
-// entonces podemos recibir comandos además de solo numeros
+
 
 
 
