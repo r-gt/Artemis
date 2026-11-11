@@ -1,8 +1,8 @@
 #include "artemis.h"
 
-float rapidez(float a, float t){
+float rapidez(float vi, float a, float t){
 
-	return a*t*t;
+	return vi + a*t;
 
 }
 
