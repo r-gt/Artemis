@@ -1,4 +1,6 @@
 #include "validaciones.h"
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -8,21 +10,22 @@
 
 
 
-int get_int(char* label, int def){
+int get_uint(char* label){
 
 	char input[16];
 
 	printf("\n%s: ", label);
 	scanf("%15s", input); // hay que dejar un espacio para el final del string "\0"
 
+
 	for (int i = 0; input[i]; i++) {
 
-			if(input[i]==',' || input[i]=='.') break;
 
-		if (!(input[i] >= '0' && input[i] <= '9') && !(i == 0 && input[i] == '-')) {
 
-			printf("entrada no valida, usando valor por defecto (%d)", def);
-			return def;
+		if ( !(input[i] >= '0' && input[i] <= '9')  || (input[i]==',' || input[i]=='.') ) {
+
+			printf("entrada invalida\n");
+			return -1;
 
 		}
 	}
@@ -32,7 +35,7 @@ int get_int(char* label, int def){
 }
 
 
-float get_float(char* label, float def){
+float get_ufloat(char* label){
 
 	char input[32];
 
@@ -48,13 +51,12 @@ float get_float(char* label, float def){
 		if(comma_verif) comma++;
 
 		if (
-			( !(input[i] >= '0' && input[i] <= '9') &&
-			  !(i == 0 && input[i] == '-') ) &&
+			  !(input[i] >= '0' && input[i] <= '9') &&
 			  !(comma_verif && comma < 2)
 		) {
 
-			printf("entrada no valida, usando valor por defecto (%.3f)", def);
-			return def;
+			printf("entrada invalida \n");
+			return -1.0;
 
 		}
 	}
