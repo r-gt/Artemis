@@ -6,11 +6,15 @@
 
 int main(){
 
-    for(;;){
+
+    for(;;){ // bucle hasta que el usuario corta la ejecución (ctrl+c, ctrl+z o eligiendo 3)
 
         int choice=-1;
 
+        printf("\n----------------\n");
+
         while(choice==-1){
+
             choice = get_uint("elejir opción:\n 1. simulación\n 2. detalles\n 3. salir \n\nElección");
 
         }
@@ -32,8 +36,6 @@ int main(){
 
         }
     }
-
-    printf("\n\n\n");
 
     return 0;
 }
