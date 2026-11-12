@@ -46,13 +46,13 @@ float get_ufloat(char* label){
 
 	for (int i = 0; input[i]; i++) {
 
-		_Bool comma_verif = input[i]==',' || input[i]=='.';
+		if(input[i]==',') input[i]='.';
 
-		if(comma_verif) comma++;
+		if(input[i]=='.') comma++;
 
 		if (
 			  (!(input[i] >= '0' && input[i] <= '9') &&
-			   !(comma_verif && comma < 2))
+			   !(input[i]=='.' && comma < 2))
 			   || input[i]==EOF
 		) {
 
