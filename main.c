@@ -5,9 +5,6 @@
 #include "artemis.h"
 
 int main(){
-    int a = get_uint("pingo");
-    printf("%d\n", a);
-
 
     for(;;){
 
