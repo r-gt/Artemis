@@ -4,7 +4,7 @@
 #include "artemis.h"
 #include <math.h>
 
-int simulacion(){
+int simulacion(int modo){
     float h_final_B;
     float acb;
     int st = 0;
@@ -13,18 +13,28 @@ int simulacion(){
     printf("                       --- > TRAMO A < ---\n");
     printf("=================================================================\n");
 
-    vel = get_ufloat("Ingrese la velocidad inicial (m/s) ->");
-    posi = get_ufloat("Ingrese la posicion inicial (m) ->");
-    ac = get_ufloat("Ingrese la aceleracion constante (m/s^2) ->");
-    ti = get_uint("Ingrese el tiempo inicial (s) ->");
-    tf = get_uint("Ingrese el tiempo final (s) ->");
+    //si el modo es personalizado pregunto todos los parametros
+    if (modo == 2){
+        vel = get_ufloat("Ingrese la velocidad inicial (m/s) ->");
+        posi = get_ufloat("Ingrese la posicion inicial (m) ->");
+        ac = get_ufloat("Ingrese la aceleracion constante (m/s^2) ->");
+        ti = get_uint("Ingrese el tiempo inicial (s) ->");
+        tf = get_uint("Ingrese el tiempo final (s) ->");
+    
+    } else {
+        float vel = 0.0;
+        float posi = 0.0;
+        float ac = 20.0;
+        int ti = 0;
+        int tf = 120;
+
+    }
     
     while (st == 0 || st == -1.0) {  
         st = get_uint("Ingrese el paso temporal (s) ->");
         if (st == 0) printf("\nPorfavor, ingrese un valor entero distinto de 0\n");
     }
-    
-    
+
     printf("\n=================================================================\n");
     printf("%-10s | %-15s | %-15s | %-10s\n", "Tiempo (s)", "Velocidad (m/s)", "Altura (m)", "Fuerza (G)");
     printf("=================================================================\n");
@@ -46,11 +56,14 @@ int simulacion(){
     printf("                       --- > TRAMO B < ---\n");
     printf("=================================================================\n");
     
-    printf("Ingrese la altura alcanzada por la nave (m) -> ");
-    scanf("%f", &h_final_B);
-    printf("Ingrese la aceleracion constante del motor principal (m/s^2) -> ");
-    scanf("%f", &acb);
-    
+    if (modo == 2) {
+        h_final_B = get_ufloat("Ingrese la altura alcanzada por la nave (m) -> ")
+        acb = get_ufloat("Ingrese la aceleracion constante del motor principal (m/s^2) -> ");
+    } else {
+        float h_final_b = 160000.0;
+        float acb = 12.5;
+    }    
+
     float incrementoH = h_final_B - h_final_A; 
     
     float v_final_B = rapidez_tramo2(v_final_A, acb, incrementoH);
