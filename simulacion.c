@@ -22,15 +22,22 @@ int simulacion(int modo){
 
     //si el modo es personalizado pregunto todos los parametros
     if (modo == 2){
-        vel = get_ufloat("Ingrese la velocidad inicial (m/s) ->");
-        posi = get_ufloat("Ingrese la posicion inicial (m) ->");
-        ac = get_ufloat("Ingrese la aceleracion constante (m/s^2) ->");
-        ti = get_uint("Ingrese el tiempo inicial (s) ->");
-        tf = get_uint("Ingrese el tiempo final (s) ->");
-    
+
+        vel  = -1;
+        posi = -1;
+        ac   = -1;
+        ti   = -1;
+        tf   = -1;
+
+        while(vel==-1)   vel  = get_ufloat("Ingrese la velocidad inicial (m/s) ->");
+        while(posi==-1)  posi = get_ufloat("Ingrese la posicion inicial (m) ->");
+        while(ac==-1)    ac   = get_ufloat("Ingrese la aceleracion constante (m/s^2) ->");
+        while(ti==-1)    ti   = get_uint("Ingrese el tiempo inicial (s) ->");
+        while(tf==-1)    tf   = get_uint("Ingrese el tiempo final (s) ->");
+
     }
-    
-    while (st == 0 || st == -1.0) {  
+
+    while (st == 0 || st == -1.0) {
         st = get_uint("Ingrese el paso temporal (s) ->");
         if (st == 0) printf("\nPorfavor, ingrese un valor entero distinto de 0\n");
     }
@@ -61,14 +68,17 @@ int simulacion(int modo){
     printf("\n=================================================================\n");
     printf("                       --- > TRAMO B < ---\n");
     printf("=================================================================\n");
-    
+
     if (modo == 2) {
-        h_final_B = get_ufloat("Ingrese la altura alcanzada por la nave (m) -> ");
-        acb = get_ufloat("Ingrese la aceleracion constante del motor principal (m/s^2) -> ");
+        h_final_B  = -1;
+        acb        = -1;
+
+        while(h_final_B == -1)  h_final_B = get_ufloat("Ingrese la altura alcanzada por la nave (m) -> ");
+        while(acb == -1)        acb = get_ufloat("Ingrese la aceleracion constante del motor principal (m/s^2) -> ");
     }
-    
-    float incrementoH = h_final_B - h_final_A; 
-    
+
+    float incrementoH = h_final_B - h_final_A;
+
     float v_final_B = rapidez_tramo2(v_final_A, acb, incrementoH);
 
     printf("\n=================================================================\n");
@@ -76,19 +86,19 @@ int simulacion(int modo){
     printf("Desplazamiento en Tramo B (Delta Y): %.2f m\n", incrementoH);
     printf("La velocidad alcanzada en la posicion final es de: %.2f m/s\n", v_final_B);
     printf("=================================================================\n\n");
-    
+
     float v_inicial_C = v_final_B;
     float h_inicial_C = h_final_B;
 
     printf("\n=================================================================\n");
     printf("                       --- > TRAMO C < ---\n");
     printf("=================================================================\n");
-    
+
     printf("\n=================================================================\n");
     printf("Los motores del cohete empezaron a fallar (!!!)\n");
-    
-    float h_max = altura_max(v_inicial_C, h_inicial_C);
+
+    float h_max = altura_max( h_inicial_C, v_inicial_C);
     printf("Altura maxima alcazada por el cohete luego de la falla: %f m", h_max);
-    printf("\n=================================================================\n");    
+    printf("\n=================================================================\n");
     return 0;
 }
