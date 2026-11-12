@@ -11,8 +11,8 @@ int main(){
         system("chcp 65001 >nul");
     #endif
 
-
-    for(;;){ // bucle hasta que el usuario corta la ejecución (ctrl+c, ctrl+z o eligiendo 3)
+    // bucle hasta que el usuario corta la ejecución (ctrl+c, ctrl+z o eligiendo 3 o cualquier otro numero que no sea opción)
+    for(;;){
 
         int choice=-1;
 
