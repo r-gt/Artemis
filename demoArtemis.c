@@ -5,6 +5,15 @@
 #include <math.h>
 
 int simulacion(int modo){
+    float vel = 0.0;
+    float posi = 0.0;
+    float ac = 20.0;
+    float ti = 0;
+    float tf = 120;
+
+    float h_final_b = 160000.0;
+    float acb = 12.5;
+
     float h_final_B;
     float acb;
     int st = 0;
@@ -21,13 +30,6 @@ int simulacion(int modo){
         ti = get_uint("Ingrese el tiempo inicial (s) ->");
         tf = get_uint("Ingrese el tiempo final (s) ->");
     
-    } else {
-        float vel = 0.0;
-        float posi = 0.0;
-        float ac = 20.0;
-        int ti = 0;
-        int tf = 120;
-
     }
     
     while (st == 0 || st == -1.0) {  
@@ -59,11 +61,8 @@ int simulacion(int modo){
     if (modo == 2) {
         h_final_B = get_ufloat("Ingrese la altura alcanzada por la nave (m) -> ")
         acb = get_ufloat("Ingrese la aceleracion constante del motor principal (m/s^2) -> ");
-    } else {
-        float h_final_b = 160000.0;
-        float acb = 12.5;
-    }    
-
+    }
+    
     float incrementoH = h_final_B - h_final_A; 
     
     float v_final_B = rapidez_tramo2(v_final_A, acb, incrementoH);
