@@ -10,7 +10,7 @@ make:
 	$(CC) $(FLAGS) -o $(BUILD)/validaciones.o   -c validaciones.c
 	$(CC) $(FLAGS) -o $(BUILD)/main.o           -c main.c
 
-	$(CC) $(FLAGS) -o $(EXE) $(BUILD)/artemis.o $(BUILD)/validaciones.o $(BUILD)/main.o
+	$(CC) $(FLAGS) -o $(EXE) $(BUILD)/artemis.o $(BUILD)/validaciones.o $(BUILD)/main.o -lm
 
 clean:
 	rm ./$(BUILD)/*
