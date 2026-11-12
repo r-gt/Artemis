@@ -22,7 +22,7 @@ int get_uint(char* label){
 
 
 
-		if ( !(input[i] >= '0' && input[i] <= '9')  || (input[i]==',' || input[i]=='.') ) {
+		if ( !(input[i] >= '0' && input[i] <= '9')  || (input[i]==',' || input[i]=='.') || input[i]==EOF) {
 
 			printf("entrada invalida\n");
 			return -1;
@@ -51,8 +51,9 @@ float get_ufloat(char* label){
 		if(comma_verif) comma++;
 
 		if (
-			  !(input[i] >= '0' && input[i] <= '9') &&
-			  !(comma_verif && comma < 2)
+			  (!(input[i] >= '0' && input[i] <= '9') &&
+			   !(comma_verif && comma < 2))
+			   || input[i]==EOF
 		) {
 
 			printf("entrada invalida \n");

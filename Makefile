@@ -1,4 +1,4 @@
-CC      = gcc
+CC      = gcc -std=c17
 FLAGS   = -Wall -Wextra
 BUILD   = bin
 EXE     = bin/program.out
