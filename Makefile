@@ -1,5 +1,5 @@
-CC      = gcc -std=c99
-FLAGS   = -Wall -Wextra
+CC      = gcc
+FLAGS   = -Wall -Wextra -std=c99 -finput-charset=UTF-8 -fexec-charset=UTF-8
 BUILD   = bin
 EXE     = bin/program.out
 

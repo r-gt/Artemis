@@ -10,12 +10,12 @@
 
 
 
-int get_uint(char* label){
+long long get_ulong(char* label){
 
-	char input[16];
+	char input[32];
 
-	printf("\n%s: ", label);
-	scanf("%15s", input); // hay que dejar un espacio para el final del string "\0"
+	printf("\n%s ", label);
+	scanf("%31s", input); // hay que dejar un espacio para el final del string "\0"
 
 
 	for (int i = 0; input[i]; i++) {
@@ -30,17 +30,18 @@ int get_uint(char* label){
 		}
 	}
 
-    return atoi(input);
+	char * failed; // no sirve para nada aquí pero strtol lo pide
+    return strtol(input, &failed, 10);
 
 }
 
 
-float get_ufloat(char* label){
+double get_udouble(char* label){
 
-	char input[32];
+	char input[64];
 
-	printf("\n%s: ", label);
-	scanf("%31s", input); // hay que dejar un espacio para el final del string "\0"
+	printf("\n%s", label);
+	scanf("%63s", input); // hay que dejar un espacio para el final del string "\0"
 
 	char comma = 0; // usado para ver si hay mas de una coma flotante
 
@@ -62,7 +63,8 @@ float get_ufloat(char* label){
 		}
 	}
 
-	return atof(input);
+	char*err; //no sirve de nada pero strtod
+	return strtod(input, &err);
 
 }
 
