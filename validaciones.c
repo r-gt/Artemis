@@ -30,8 +30,8 @@ long long get_ulong(char* label){
 		}
 	}
 
-	char * failed; // no sirve para nada aquí pero strtol lo pide
-    return strtol(input, &failed, 10);
+
+    return atoll(input);
 
 }
 
@@ -63,8 +63,8 @@ double get_udouble(char* label){
 		}
 	}
 
-	char*err; //no sirve de nada pero strtod
-	return strtod(input, &err);
+
+	return atof(input);
 
 }
 
