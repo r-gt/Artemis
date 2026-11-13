@@ -5,4 +5,12 @@
 	float rapidezG(float ac);
 	float rapidez_tramo2(float v, float a, float y);
 	float altura_max(float h, float v);
+
+	typedef struct{
+		double vel;
+		double posi;
+		double ac;
+	}nave;
+
+
 #endif

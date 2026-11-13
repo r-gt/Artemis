@@ -1,8 +1,8 @@
 #ifndef VALIDACIONES_H
 #define VALIDACIONES_H
 
-int get_uint(char* label);
-float get_ufloat(char * label);
+long long get_ulong(char* label);
+double get_udouble(char * label);
 
 
 #endif

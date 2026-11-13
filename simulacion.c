@@ -2,19 +2,22 @@
 #include <stdlib.h>
 #include "validaciones.h"
 #include "artemis.h"
+#include "simulacion.h"
 #include <math.h>
 
+nave artemis;
+
 int simulacion(int modo){
-    float vel = 0.0;
-    float posi = 0.0;
-    float ac = 20.0;
-    float ti = 0;
-    float tf = 120;
+    artemis.vel = 0.0;
+    artemis.posi = 0.0;
+    artemis.ac = 20.0;
+    double ti = 0;
+    double tf = 120;
 
-    float h_final_B = 160000.0;
-    float acb = 12.5;
+    double h_final_B = 160000.0;
+    double acb = 12.5;
 
-    int st = 0;
+    long int st = 0;
 
     printf("\n=================================================================\n");
     printf("                       --- > TRAMO A < ---\n");
@@ -23,22 +26,22 @@ int simulacion(int modo){
     //si el modo es personalizado pregunto todos los parametros
     if (modo == 2){
 
-        vel  = -1;
-        posi = -1;
-        ac   = -1;
+        artemis.vel  = -1;
+        artemis.posi = -1;
+        artemis.ac   = -1;
         ti   = -1;
         tf   = -1;
 
-        while(vel==-1)   vel  = get_ufloat("Ingrese la velocidad inicial (m/s) ->");
-        while(posi==-1)  posi = get_ufloat("Ingrese la posicion inicial (m) ->");
-        while(ac==-1)    ac   = get_ufloat("Ingrese la aceleracion constante (m/s^2) ->");
-        while(ti==-1)    ti   = get_uint("Ingrese el tiempo inicial (s) ->");
-        while(tf==-1)    tf   = get_uint("Ingrese el tiempo final (s) ->");
+        while(artemis.vel==-1)   artemis.vel  = get_udouble("Ingrese la velocidad inicial (m/s) ->");
+        while(artemis.posi==-1)  artemis.posi = get_udouble("Ingrese la posicion inicial (m) ->");
+        while(artemis.ac==-1)    artemis.ac   = get_udouble("Ingrese la aceleracion constante (m/s^2) ->");
+        while(ti==-1)    ti   = get_ulong("Ingrese el tiempo inicial (s) ->");
+        while(tf==-1)    tf   = get_ulong("Ingrese el tiempo final (s) ->");
 
     }
 
     while (st == 0 || st == -1.0) {
-        st = get_uint("Ingrese el paso temporal (s) ->");
+        st = get_ulong("Ingrese el paso temporal (s) ->");
         if (st == 0) printf("\nPorfavor, ingrese un valor entero distinto de 0\n");
     }
 
@@ -51,9 +54,9 @@ int simulacion(int modo){
 
         if(t>tf) t=tf;
 
-        float v_actual = rapidez(vel, ac, t);
-        float h_actual = altura(posi, vel, ac, t);
-        float g_actual = rapidezG(ac);
+        double v_actual = rapidez(artemis.vel, artemis.ac, t);
+        double h_actual = altura(artemis.posi, artemis.vel, artemis.ac, t);
+        double g_actual = rapidezG(artemis.ac);
 
         printf("%-10d | %-15.2f | %-15.2f | %-10.2f\n", t, v_actual, h_actual, g_actual);
     }
@@ -62,8 +65,8 @@ int simulacion(int modo){
 
     printf("=================================================================\n");
 
-    float v_final_A = rapidez(vel, ac, tf);
-    float h_final_A = altura(posi, vel, ac, tf);
+    double v_final_A = rapidez(artemis.vel, artemis.ac, tf);
+    double h_final_A = altura(artemis.posi, artemis.vel, artemis.ac, tf);
 
     printf("\n=================================================================\n");
     printf("                       --- > TRAMO B < ---\n");
@@ -73,13 +76,13 @@ int simulacion(int modo){
         h_final_B  = -1;
         acb        = -1;
 
-        while(h_final_B == -1)  h_final_B = get_ufloat("Ingrese la altura alcanzada por la nave (m) -> ");
-        while(acb == -1)        acb = get_ufloat("Ingrese la aceleracion constante del motor principal (m/s^2) -> ");
+        while(h_final_B == -1)  h_final_B = get_udouble("Ingrese la altura alcanzada por la nave (m) -> ");
+        while(acb == -1)        acb = get_udouble("Ingrese la aceleracion constante del motor principal (m/s^2) -> ");
     }
 
-    float incrementoH = h_final_B - h_final_A;
+    double incrementoH = h_final_B - h_final_A;
 
-    float v_final_B = rapidez_tramo2(v_final_A, acb, incrementoH);
+    double v_final_B = rapidez_tramo2(v_final_A, acb, incrementoH);
 
     printf("\n=================================================================\n");
     printf("Estado al iniciar Tramo B: Altura = %.2f m | Velocidad = %.2f m/s\n", h_final_A, v_final_A);
@@ -87,8 +90,8 @@ int simulacion(int modo){
     printf("La velocidad alcanzada en la posicion final es de: %.2f m/s\n", v_final_B);
     printf("=================================================================\n\n");
 
-    float v_inicial_C = v_final_B;
-    float h_inicial_C = h_final_B;
+    double v_inicial_C = v_final_B;
+    double h_inicial_C = h_final_B;
 
     printf("\n=================================================================\n");
     printf("                       --- > TRAMO C < ---\n");
@@ -97,7 +100,7 @@ int simulacion(int modo){
     printf("\n=================================================================\n");
     printf("Los motores del cohete empezaron a fallar (!!!)\n");
 
-    float h_max = altura_max( h_inicial_C, v_inicial_C);
+    double h_max = altura_max( h_inicial_C, v_inicial_C);
     printf("Altura maxima alcazada por el cohete luego de la falla: %f m", h_max);
     printf("\n=================================================================\n");
     return 0;

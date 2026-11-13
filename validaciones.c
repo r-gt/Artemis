@@ -10,19 +10,19 @@
 
 
 
-int get_uint(char* label){
+long long get_ulong(char* label){
 
-	char input[16];
+	char input[32];
 
-	printf("\n%s: ", label);
-	scanf("%15s", input); // hay que dejar un espacio para el final del string "\0"
+	printf("\n%s ", label);
+	scanf("%31s", input); // hay que dejar un espacio para el final del string "\0"
 
 
 	for (int i = 0; input[i]; i++) {
 
 
 
-		if ( !(input[i] >= '0' && input[i] <= '9')  || (input[i]==',' || input[i]=='.') ) {
+		if ( !(input[i] >= '0' && input[i] <= '9')  || (input[i]==',' || input[i]=='.') || input[i]==EOF) {
 
 			printf("entrada invalida\n");
 			return -1;
@@ -30,29 +30,31 @@ int get_uint(char* label){
 		}
 	}
 
-    return atoi(input);
+
+    return atoll(input);
 
 }
 
 
-float get_ufloat(char* label){
+double get_udouble(char* label){
 
-	char input[32];
+	char input[64];
 
-	printf("\n%s: ", label);
-	scanf("%31s", input); // hay que dejar un espacio para el final del string "\0"
+	printf("\n%s", label);
+	scanf("%63s", input); // hay que dejar un espacio para el final del string "\0"
 
 	char comma = 0; // usado para ver si hay mas de una coma flotante
 
 	for (int i = 0; input[i]; i++) {
 
-		_Bool comma_verif = input[i]==',' || input[i]=='.';
+		if(input[i]==',') input[i]='.';
 
-		if(comma_verif) comma++;
+		if(input[i]=='.') comma++;
 
 		if (
-			  !(input[i] >= '0' && input[i] <= '9') &&
-			  !(comma_verif && comma < 2)
+			  (!(input[i] >= '0' && input[i] <= '9') &&
+			   !(input[i]=='.' && comma < 2))
+			   || input[i]==EOF
 		) {
 
 			printf("entrada invalida \n");
@@ -60,6 +62,7 @@ float get_ufloat(char* label){
 
 		}
 	}
+
 
 	return atof(input);
 
