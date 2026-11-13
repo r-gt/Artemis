@@ -14,5 +14,5 @@ float rapidez_tramo2(float v, float a, float y){
     return sqrt(v*v + 2.0 * a *y);
 }
 float altura_max(float h, float v){
-    return h + (v*v)/19.6;
+    return h + v/19.6;
 }
