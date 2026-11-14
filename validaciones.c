@@ -12,13 +12,15 @@
 
 long long get_ulong(char* label){
 
-	char input[32];
+	char input[32]={0};
 
 	printf("\n%s ", label);
-	scanf("%31s", input); // hay que dejar un espacio para el final del string "\0"
+
+	// hay que dejar un espacio para el final del string "\0"
+	if(scanf("%31s", input)!=1) exit(EXIT_FAILURE);
 
 
-	for (int i = 0; input[i]; i++) {
+	for (int i = 0; input[i]!='\0'; i++) {
 
 
 
@@ -38,14 +40,16 @@ long long get_ulong(char* label){
 
 double get_udouble(char* label){
 
-	char input[64];
+	char input[64]={0};
 
 	printf("\n%s", label);
-	scanf("%63s", input); // hay que dejar un espacio para el final del string "\0"
+
+	 // hay que dejar un espacio para el final del string "\0"
+	if(scanf("%63s", input)!=1) exit(EXIT_FAILURE);
 
 	char comma = 0; // usado para ver si hay mas de una coma flotante
 
-	for (int i = 0; input[i]; i++) {
+	for (int i = 0; input[i]!='\0'; i++) {
 
 		if(input[i]==',') input[i]='.';
 

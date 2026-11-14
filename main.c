@@ -34,6 +34,8 @@ int main(){
                 simulacion(choice);
 
                 choice = get_ulong("Simulación finalizada ¿quieres regresar al inicio?\n  1. continuar\n  2. salir\n\n Elección:");
+		
+		if(choice > 1 || choice == -1) return 0;
 
                 break;
 
