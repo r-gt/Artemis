@@ -17,7 +17,7 @@ Integrantes:
     - Holzman Zorzon Thiago
     - Ramirez Maximo Amir
     - Bejarano, Federico
-    - Santiago Hernan Larrea
+    - Hernan Larrea Santiago
 
 
 Compilado:
@@ -25,3 +25,9 @@ Compilado:
     2. Correr Make en la carpeta del proyecto.
    
     El ejecutable final se encontrará en bin/program.out
+
+Modelos de inteligencia artificial usados:
+    - Hernan Larrea Santiago: Claude Sonnet 5.5
+    - Bejarano, Federico: SpaceXSI Grok 4.7
+    - Ramirez Maximo Amir: Google Gemini Argon
+    - Holzman Zorzon Thiago: Claude Sonnet 5.5
